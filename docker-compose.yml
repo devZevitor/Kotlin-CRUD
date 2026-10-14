@@ -1,0 +1,11 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: mongo-tasks
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-tasks-data:/data/db
+
+volumes:
+  mongo-tasks-data:

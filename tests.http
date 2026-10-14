@@ -1,0 +1,39 @@
+@baseUrl = http://localhost:8080
+
+### Criar tarefa
+# @name createTask
+POST {{baseUrl}}/tasks
+Content-Type: application/json
+
+{
+  "title": "Estudar Compose"
+}
+
+### Guardar o id retornado pelo POST
+@taskId = {{createTask.response.body.id}}
+
+### Listar tarefas
+GET {{baseUrl}}/tasks
+
+### Atualizar tarefa
+PUT {{baseUrl}}/tasks/{{taskId}}
+Content-Type: application/json
+
+{
+  "title": "Estudar Compose",
+  "done": true
+}
+
+### Deletar tarefa
+DELETE {{baseUrl}}/tasks/{{taskId}}
+
+### Testar validação (deve devolver 400)
+POST {{baseUrl}}/tasks
+Content-Type: application/json
+
+{
+  "title": ""
+}
+
+### Testar id inexistente (deve devolver 404)
+DELETE {{baseUrl}}/tasks/000000000000000000000000
